@@ -15,24 +15,24 @@ import java.util.Properties;
 
 public class Util {
 
-    private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String URL = "jdbc:mysql://localhost:3306/usertable";
-    private static final String USERNAME = "root";
-    private static final String PASSWORD = "PASSWORD";
-    private static Connection connection;
+//    private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
+//    private static final String URL = "jdbc:mysql://localhost:3306/usertable";
+//    private static final String USERNAME = "root";
+//    private static final String PASSWORD = "PASSWORD";
+//    private static Connection connection;
     private static SessionFactory sessionFactory;
 
     //JDBC
-    public static Connection getConnection() {
-        try {
-            Class.forName(DRIVER);
-            connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-            System.out.println("Connection ERROR");
-        }
-        return connection;
-    }
+//    public static Connection getConnection() {
+//        try {
+//            Class.forName(DRIVER);
+//            connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+//        } catch (ClassNotFoundException | SQLException e) {
+//            e.printStackTrace();
+//            System.out.println("Connection ERROR");
+//        }
+//        return connection;
+//    }
 
     //Hibernate
     public static SessionFactory getSessionFactory() {
