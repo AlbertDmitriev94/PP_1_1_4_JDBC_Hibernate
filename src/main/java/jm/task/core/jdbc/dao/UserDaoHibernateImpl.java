@@ -19,7 +19,7 @@ public class UserDaoHibernateImpl implements UserDao {
         Transaction transaction = null;
         try (Session session = Util.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            session.createNativeQuery ("CREATE TABLE `usertable`.`users` (\n" +
+            session.createNativeQuery ("CREATE TABLE IF NOT EXISTS`users` (\n" +
                     "  `id` INT NOT NULL AUTO_INCREMENT,\n" +
                     "  `name` VARCHAR(45) NOT NULL,\n" +
                     "  `lastname` VARCHAR(45) NOT NULL,\n" +
@@ -84,9 +84,12 @@ public class UserDaoHibernateImpl implements UserDao {
 
     @Override
     public List<User> getAllUsers() {
-        List users;
+        List <User> users = null;
         try (Session session = Util.getSessionFactory().openSession()) {
-            users = session.createNativeQuery("from User", User.class).list();
+            users = session.createNativeQuery("SELECT * FROM userS", User.class).getResultList();
+            System.out.println(users);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return users;
     }
@@ -96,7 +99,7 @@ public class UserDaoHibernateImpl implements UserDao {
         Transaction transaction = null;
         try (Session session = Util.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            session.createNativeQuery("DELETE from user").executeUpdate();
+            session.createQuery("DELETE from User").executeUpdate();
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
